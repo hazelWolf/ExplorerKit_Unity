@@ -26,14 +26,26 @@ public class Request : MonoBehaviour {
 
 	private IEnumerator onResponse(WWW req){
 		yield return req;
+		Debug.Log(req.text);
 		responseText.text = req.text;
 	}
-}
-
 //-------------------------------------------------------------------------------------//
 
 	// 2.Get request with params
 
 //------------------------------------------------------------------------------------//
 	// 3. Post request with headers 
-//-----------------------------------------------------------------------------------//
+
+	public void postReq()
+    {
+        WWWForm form = new WWWForm();
+
+        Dictionary<string, string> headers = new Dictionary<string,string>();
+        headers.Add("name", "bhomit");
+        WWW req = new WWW("https://b2969990.ngrok.io//post",null,  headers);
+        Debug.Log(req);
+        StartCoroutine(onResponse(req));
+    }
+
+    //-----------------------------------------------------------------------------------//
+}
