@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Newtonsoft.Json;
 public class Testing : MonoBehaviour {
 
 	private XML2JSON test;
@@ -11,6 +11,22 @@ public class Testing : MonoBehaviour {
 	void Start () {
 		test = new XML2JSON();
 		Debug.Log(test.JsonToXml((test.ParseXMLData(sample))));
+		convert(test.JsonToXml((test.ParseXMLData(sample))));
+	}
+
+	/*//todo
+	1. Genric type parsing and excetion handling.
+	2. Complex json structures
+	*/ 
+
+	/// <summary>
+	/// deserialze json
+	/// </summary>
+	/// <param name="guestbook"></param>
+	void convert(string guestbook){
+		RootObject book = new RootObject();
+		book = JsonConvert.DeserializeObject<RootObject>(guestbook);
+		Debug.Log(book.guestbook.guest[0].fname +" "+ book.guestbook.guest[0].lname);
 	}
 	
 	// Update is called once per frame
