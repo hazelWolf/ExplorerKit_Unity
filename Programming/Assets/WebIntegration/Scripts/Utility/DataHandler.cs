@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
 
 /* Author: bhomitb, 12 April 2020
  * Latest Revision : 
@@ -8,14 +11,46 @@ namespace wolf.hazel.helper
 {
     public class DataHandler
     {
-        public IEnumerator FetchData()
+        public IEnumerator FetchData(string url, Action<string> callback)
         {
-            yield return null;
+            if (!string.IsNullOrEmpty(url))
+            {
+                using (UnityWebRequest www = UnityWebRequest.Get(url))
+                {
+                    yield return www.SendWebRequest();
+                    if (www.isNetworkError || www.isHttpError)
+                    {
+                        Debug.LogError("Error fetch data from : " + url + "got response : " + www.error);
+                        callback(null);
+                    }
+                    else callback(www.downloadHandler.text);
+                }
+            }
+            else
+            {
+                Debug.LogError("Please provide a valid url");
+            }
         }
 
-        public IEnumerator PostData()
+        public IEnumerator PostData(string url, WWWForm data, Action<string> callback)
         {
-            yield return null;
+            if (!string.IsNullOrEmpty(url))
+            {
+                using (UnityWebRequest www = UnityWebRequest.Post(url, data))
+                {
+                    yield return www.SendWebRequest();
+                    if (www.isNetworkError || www.isHttpError)
+                    {
+                        Debug.LogError("Error fetch data from : " + url + "got response : " + www.error);
+                        callback(null);
+                    }
+                    else callback(www.downloadHandler.text);
+                }
+            }
+            else
+            {
+                Debug.LogError("Please provide a valid url");
+            }
         }
     }
 }
