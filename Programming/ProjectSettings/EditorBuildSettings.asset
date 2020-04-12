@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/imagedownloader.unity
+    path: Assets/WebIntegration/Examples/imagedownloader.unity
     guid: af63054016d55b841a67b729f21aa5c5
   m_configObjects: {}

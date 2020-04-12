@@ -6,8 +6,9 @@
 * Added Basic AR plane detection using Foundation compatible with Android - 5 April 2020
 > **Virtual Reality**
 *
-> **Networking**
-*
+> [**Networking**](/Programming/Assets/WebIntegration)
+* Image Import into unity from website, 12 April 2020
+* Image search in unity using https://pixabay.com, 12 April 2020
 > **WebGL**
 *
 > **WebRTC**
