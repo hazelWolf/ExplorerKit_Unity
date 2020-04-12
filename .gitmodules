@@ -1,0 +1,3 @@
+[submodule "ARFoundation"]
+	path = ARFoundation
+	url = https://github.com/hazelWolf/ARFoundation.git
