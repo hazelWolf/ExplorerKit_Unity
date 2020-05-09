@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 /* Author: bhomitb, 12 April 2020
- * Latest Revision : 
- * Handling donwloads from API's using UnityWebRequest & Download handler
+ * Latest Revision : 8 May 2020
+ * Handling downloads from API's using UnityWebRequest & Download handler
  */
 namespace wolf.hazel.helper
 {
     public class DownloadHelper
     {
-        public IEnumerator DownlodSpriteImage(string url, Action<Sprite> callback)
+        public IEnumerator DownlodImage(string url, Action<Texture2D> callback)
         {
             if (!string.IsNullOrEmpty(url))
             {
@@ -27,10 +27,7 @@ namespace wolf.hazel.helper
                     {
                         // Get the texture from download
                         Texture2D texture = DownloadHandlerTexture.GetContent(w);
-                        Rect rect = new Rect(0, 0, texture.width, texture.height);
-
-                        // Generate a sprite from texture
-                        callback(Sprite.Create(texture, rect, new Vector2(0.5f, 0.5f), 100));
+                        callback(texture);
                     }
                 }
             }

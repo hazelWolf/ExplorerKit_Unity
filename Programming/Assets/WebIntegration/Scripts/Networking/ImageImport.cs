@@ -1,6 +1,7 @@
 ﻿using wolf.hazel.helper;
 using UnityEngine;
 using UnityEngine.UI;
+using wolf.hazel.utility;
 
 /* Author: bhomitb 12 April 2020
  * Revised on:
@@ -16,12 +17,12 @@ namespace wolf.hazel.app
         void Start()
         {
             DownloadHelper downloader = new DownloadHelper();
-            StartCoroutine(downloader.DownlodSpriteImage(url, UpdateImage));
+            StartCoroutine(downloader.DownlodImage(url, UpdateImage));
         }
 
-        void UpdateImage(Sprite sprite)
+        void UpdateImage(Texture2D texture)
         {
-            image.sprite = sprite;
+            image.sprite = SpriteUtility.textureToSprite(texture);
         }
     }
 }

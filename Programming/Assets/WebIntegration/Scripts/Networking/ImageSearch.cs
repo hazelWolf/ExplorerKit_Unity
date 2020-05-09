@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using wolf.hazel.utility;
 
 /* Author : bhomitb, 12 April 2020
  * Revised on :
@@ -14,7 +15,6 @@ namespace wolf.hazel.app
     {
         public TMP_InputField tmp_InputField;
         public Image image;
-        public TMP_Text text;
         public TMP_Text logText;
         public string API;
 
@@ -50,7 +50,7 @@ namespace wolf.hazel.app
                     string imageURL = hit["largeImageURL"] as string;
                     if (!string.IsNullOrEmpty(imageURL))
                     {
-                        StartCoroutine(_downloader.DownlodSpriteImage(imageURL, UpdateImage));
+                        StartCoroutine(_downloader.DownlodImage(imageURL, UpdateImage));
                     }
                 }
             }
@@ -62,9 +62,9 @@ namespace wolf.hazel.app
             }
         }
 
-        void UpdateImage(Sprite sprite)
+        void UpdateImage(Texture2D texture)
         {
-            image.sprite = sprite;
+            image.sprite = SpriteUtility.textureToSprite(texture);
             image.SetNativeSize();
         }
     }
